@@ -1,0 +1,11 @@
+# User-agent: * means these rules apply to ALL bots (Google, Bing, etc.)
+User-agent: *
+
+# Allow all content to be crawled
+Allow: /
+
+# Disallow specific folders if you have them (e.g., private scripts or temp folders)
+# Disallow: /private-folder/
+
+# Link to your Sitemap so bots find your MBA college lists immediately
+Sitemap: https://www.careerwithmohit.online/sitemap.xml
