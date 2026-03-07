@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel | Daily Blog Publisher</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+    <nav class="mj-navbar">
+        <div class="mj-nav-inner">
+            <a href="index.html" class="mj-logo">Mohit Jain</a>
+            <button class="mj-search-btn" id="mjSearchBtn" aria-label="Toggle search">&#128269;</button>
+            <div class="mj-search-wrap" id="mjSearchWrap">
+                <input type="text" id="mjSearchInput" placeholder="Search pages..." />
+            </div>
+            <button class="mj-hamburger" id="mjHamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="mj-nav-links" id="mjNavLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="admin-panel-wrap">
+        <section class="admin-panel-card">
+            <header class="admin-panel-head">
+                <h1>Daily Blog Publisher</h1>
+                <p>Create, edit, and publish blog posts daily.</p>
+            </header>
+
+            <form id="adminBlogForm" class="admin-form">
+                <input type="hidden" id="postId">
+                <div class="admin-grid">
+                    <label>Title
+                        <input id="postTitle" type="text" required>
+                    </label>
+                    <label>Category
+                        <input id="postCategory" type="text" value="Admissions" required>
+                    </label>
+                    <label>Date
+                        <input id="postDate" type="date" required>
+                    </label>
+                    <label>Status
+                        <select id="postStatus">
+                            <option value="published">Published</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                    </label>
+                </div>
+                <label>Summary
+                    <textarea id="postSummary" rows="3" required></textarea>
+                </label>
+                <label>Full Content
+                    <textarea id="postContent" rows="8" required></textarea>
+                </label>
+                <div class="admin-form-actions">
+                    <button type="submit" class="admin-btn">Save Post</button>
+                    <button type="button" class="admin-btn ghost" id="resetFormBtn">Reset</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="admin-panel-card">
+            <h2>Published Queue</h2>
+            <div id="adminPostList" class="admin-post-list"></div>
+        </section>
+    </main>
+
+    <script src="scripts/blog-admin-config.js"></script>
+    <script src="scripts/blog-api.js"></script>
+    <script src="scripts/admin-blog.js"></script>
+    <script>
+        const mjHamburger = document.getElementById('mjHamburger');
+        const mjNavLinks = document.getElementById('mjNavLinks');
+        const mjSearchBtn = document.getElementById('mjSearchBtn');
+        const mjSearchWrap = document.getElementById('mjSearchWrap');
+        const mjSearchInput = document.getElementById('mjSearchInput');
+
+        if (mjHamburger && mjNavLinks) {
+            mjHamburger.addEventListener('click', () => {
+                mjNavLinks.classList.toggle('active');
+                mjHamburger.classList.toggle('active');
+                mjHamburger.setAttribute('aria-expanded', mjNavLinks.classList.contains('active'));
+            });
+        }
+
+        if (mjSearchBtn && mjSearchWrap) {
+            mjSearchBtn.addEventListener('click', () => {
+                mjSearchWrap.classList.toggle('active');
+                if (mjSearchWrap.classList.contains('active') && mjSearchInput) mjSearchInput.focus();
+            });
+        }
+    </script>
+</body>
+</html>
